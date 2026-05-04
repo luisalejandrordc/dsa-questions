@@ -14,12 +14,9 @@ bool validParentheses(string s) {
     if (openToClose.count(c))
       history.push(c);
     else {
-      if (history.empty())
+      if (history.empty() || history.top() != closeToOpen[c])
         return false;
-      if (history.top() == closeToOpen[c])
-        history.pop();
-      else
-        return false;
+      history.pop();
     }
   }
   return history.empty() ? true : false;
