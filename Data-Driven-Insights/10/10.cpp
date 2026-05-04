@@ -30,8 +30,14 @@ bool wordSearch(vector<vector<char>> &grid, string word) {
   pair<int, int> size = {grid.size(), grid[0].size()};
   for (int i = 0; i < size.first; i++)
     for (int j = 0; j < size.second; j++) {
-      if (grid[i][j] == word[0] && dfs(grid, word, size, {i, j}, 1))
-        return true;
+      if (grid[i][j] == word[0]) {
+        char temp = grid[i][j];
+        grid[i][j] = '\0';
+        int found = dfs(grid, word, size, {i, j}, 1);
+        grid[i][j] = temp;
+        if (found)
+          return true;
+      }
     }
   return false;
 }
@@ -43,6 +49,9 @@ int main() {
   string msg = wordSearch(grid, "ABCCED") ? "Word found" : "Word not found";
   cout << msg << endl;
   msg = wordSearch(grid, "ABCESCFSADEE") ? "Word found" : "Word not found";
+  cout << msg << endl;
+  grid = {{'a', 'a'}};
+  msg = wordSearch(grid, "aaa") ? "Word found" : "Word not found";
   cout << msg << endl;
   return 0;
 }
