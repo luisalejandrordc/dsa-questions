@@ -11,8 +11,14 @@ inline void printTitle(const std::string &title) {
 }
 
 inline void printVector(const std::vector<int> &nums) {
-  std::cout << "[\t";
-  for (const int x : nums)
-    std::cout << x << "\t";
-  std::cout << "]" << std::endl;
+  if (nums.empty()) {
+    std::cout << "[]" << std::endl;
+    return;
+  }
+  int len = nums.size();
+  std::cout << "[";
+  for (int i = 0; i < len - 1; i++) {
+    std::cout << nums[i] << ", ";
+  }
+  std::cout << nums[len - 1] << "]" << std::endl;
 }
