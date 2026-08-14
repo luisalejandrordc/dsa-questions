@@ -5,9 +5,9 @@
 
 using namespace std;
 
-unordered_map<char, int> stringToMap(string &s) {
+unordered_map<char, int> stringToMap(const string &s) {
   unordered_map<char, int> letters;
-  for (char c : s)
+  for (const char &c : s)
     letters[c]++;
   return letters;
 }
@@ -25,7 +25,7 @@ vector<vector<string>> groupAnagrams(vector<string> &strs) {
 
   vector<unordered_map<char, int>> letters;
   letters.reserve(size);
-  for (string s : strs)
+  for (const string &s : strs)
     letters.push_back(stringToMap(s));
 
   vector<pair<int, int>> lengths;
@@ -51,10 +51,9 @@ vector<vector<string>> groupAnagrams(vector<string> &strs) {
 
 int main() {
   printTitle("Group Anagrams");
-  // vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
-  vector<string> strs = {"ddg", "dgg"};
+  vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
   cout << "Solution:" << endl;
-  for (vector<string> v : groupAnagrams(strs))
+  for (const vector<string> &v : groupAnagrams(strs))
     printVector(v);
   return 0;
 }
