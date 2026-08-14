@@ -20,6 +20,7 @@ string sortString(string s) {
 vector<vector<string>> groupAnagrams(vector<string> &strs) {
   unordered_map<string, vector<string>> groups;
   for (const string &s : strs) {
+    // Use built-in sort function from the algorithm header
     // string key = s;
     // sort(key.begin(), key.end());
     string key = sortString(s);
@@ -45,7 +46,7 @@ int main() {
   printTitle("Group Anagrams");
   vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
   cout << "Solution:" << endl;
-  for (const vector<string> &v : groupAnagrams(strs))
+  for (const auto &v : groupAnagrams(strs))
     printVector(v);
   return 0;
 }
