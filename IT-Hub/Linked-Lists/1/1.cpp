@@ -1,38 +1,9 @@
+#include "../../../include/linked_list.h"
 #include "../../../include/utils.h"
 #include <iostream>
 #include <vector>
 
 using namespace std;
-
-struct ListNode {
-  int val;
-  ListNode *next;
-  ListNode() : val(0), next(nullptr) {}
-  ListNode(int val) : val(val), next(nullptr) {}
-  ListNode(int val, ListNode *next) : val(val), next(next) {}
-};
-
-ListNode *arrayToLinkedList(const vector<int> &nums) {
-  ListNode *head = new ListNode();
-  ListNode *curr = head;
-  for (const int &x : nums) {
-    curr->next = new ListNode(x);
-    curr = curr->next;
-  }
-  return head->next;
-}
-
-void printLinkedList(ListNode *head) {
-  ListNode *curr = head;
-  cout << "{";
-  while (curr != nullptr) {
-    if (curr != head)
-      cout << ", ";
-    cout << curr->val;
-    curr = curr->next;
-  }
-  cout << "}" << endl;
-}
 
 ListNode *reverseLinkedList(ListNode *head) {
   ListNode *curr = head;
