@@ -10,15 +10,12 @@ inline void printTitle(const std::string &title) {
   std::cout << border << std::endl;
 }
 
-inline void printVector(const std::vector<int> &nums) {
-  if (nums.empty()) {
-    std::cout << "[]" << std::endl;
-    return;
-  }
-  int len = nums.size();
+template <typename T> inline void printVector(const std::vector<T> &vec) {
   std::cout << "[";
-  for (int i = 0; i < len - 1; i++) {
-    std::cout << nums[i] << ", ";
+  for (int i = 0; i < vec.size(); i++) {
+    if (i > 0)
+      std::cout << ", ";
+    std::cout << vec[i];
   }
-  std::cout << nums[len - 1] << "]" << std::endl;
+  std::cout << "]" << std::endl;
 }
