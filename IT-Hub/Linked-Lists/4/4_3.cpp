@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Reverse Linked List without creating new ListNode objects
 ListNode *reverseLinkedList(ListNode *head) {
   ListNode *reve = nullptr;
   ListNode *head_next;
@@ -36,7 +37,7 @@ bool isPalindrome(ListNode *head) {
 
 int main() {
   printTitle("Palindrome Linked List");
-  vector<int> nums = {1, 2, 3, 3, 1};
+  vector<int> nums = {1, 2, 3, 2, 1};
   ListNode *head = arrayToLinkedList(nums);
   printLinkedList(head);
   string solution = isPalindrome(head) ? "True" : "False";
