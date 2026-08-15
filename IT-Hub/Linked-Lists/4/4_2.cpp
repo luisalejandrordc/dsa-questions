@@ -5,7 +5,7 @@
 
 using namespace std;
 
-ListNode *reverseLinkedList(ListNode *head) {
+ListNode *reverseList(ListNode *head) {
   ListNode *reve = nullptr;
   while (head != nullptr) {
     reve = new ListNode(head->val, reve);
@@ -20,7 +20,7 @@ bool isPalindrome(ListNode *head) {
     slow = slow->next;
     fast = fast->next->next;
   }
-  ListNode *reve = reverseLinkedList(slow->next);
+  ListNode *reve = reverseList(slow->next);
   while (reve != nullptr) {
     if (reve->val != head->val)
       return false;
