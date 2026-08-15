@@ -11,8 +11,7 @@ bool isPalindrome(ListNode *head) {
     nums.push_back(head->val);
     head = head->next;
   }
-  int size = nums.size();
-  for (int l = 0, r = size - 1; l < r; l++, r--)
+  for (int l = 0, r = nums.size() - 1; l < r; l++, r--)
     if (nums[l] != nums[r])
       return false;
   return true;
