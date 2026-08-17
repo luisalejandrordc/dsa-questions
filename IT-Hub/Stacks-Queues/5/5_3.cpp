@@ -32,7 +32,6 @@ int main() {
   for (int i = 10000; i >= 0; i--)
     for (int j = 1; j <= 10; j++)
       nums.push_back(i);
-  cout << "Finished ..." << endl;
   cout << "Solution: ";
   printVector(maxSlidingWindow(nums, 50000));
   return 0;

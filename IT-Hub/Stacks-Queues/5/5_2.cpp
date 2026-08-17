@@ -1,6 +1,6 @@
 #include "../../../include/utils.h"
-#include <deque>
 #include <iostream>
+#include <queue>
 #include <vector>
 
 using namespace std;
