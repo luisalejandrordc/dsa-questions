@@ -1,7 +1,6 @@
 #include "../../../include/utils.h"
 #include <iostream>
 #include <stack>
-#include <vector>
 
 using namespace std;
 
@@ -9,26 +8,25 @@ class MyQueue {
   stack<int> input, output;
 
 public:
-  stack<int> reverseStack(stack<int> my_stack) {
-    stack<int> reversed;
-    while (!my_stack.empty()) {
-      reversed.push(my_stack.top());
-      my_stack.pop();
-    }
-    return reversed;
+  void move() {
+    if (output.empty())
+      while (!input.empty()) {
+        output.push(input.top());
+        input.pop();
+      }
   }
-  void push(int x) {
-    input.push(x);
-    output = reverseStack(input);
-  }
+  void push(int x) { input.push(x); }
   int pop() {
+    move();
     int num = output.top();
     output.pop();
-    input = reverseStack(output);
     return num;
   }
-  int peek() { return output.top(); }
-  bool empty() { return output.empty() ? true : false; }
+  int peek() {
+    move();
+    return output.top();
+  }
+  bool empty() { return input.empty() && output.empty(); }
   void print() {
     stack<int> temp = output;
     bool started = false;
@@ -38,6 +36,18 @@ public:
         cout << ", ";
       cout << temp.top();
       temp.pop();
+      started = true;
+    }
+    vector<int> nums;
+    temp = input;
+    while (!temp.empty()) {
+      nums.push_back(temp.top());
+      temp.pop();
+    }
+    for (int x : nums) {
+      if (started)
+        cout << ", ";
+      cout << x;
       started = true;
     }
     cout << "}" << endl;
