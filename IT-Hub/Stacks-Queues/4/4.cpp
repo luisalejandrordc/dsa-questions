@@ -33,15 +33,14 @@ public:
     stack<int> temp = output;
     bool started = false;
     cout << "{";
-    while (!output.empty()) {
+    while (!temp.empty()) {
       if (started)
         cout << ", ";
-      cout << output.top();
-      output.pop();
+      cout << temp.top();
+      temp.pop();
       started = true;
     }
     cout << "}" << endl;
-    output = temp;
   }
 };
 
