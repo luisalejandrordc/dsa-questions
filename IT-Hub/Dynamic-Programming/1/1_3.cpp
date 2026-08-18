@@ -30,5 +30,6 @@ int main() {
   auto end = chrono::steady_clock::now();
   auto elapsed = chrono::duration<double>(end - start).count();
   cout << "Elapsed time: " << elapsed << " ms" << endl;
+  timedCall(climbStairs, 45);
   return 0;
 }

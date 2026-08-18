@@ -1,7 +1,10 @@
 #pragma once
+#include <chrono>
+#include <functional>
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 inline void printTitle(const std::string &title) {
@@ -32,4 +35,16 @@ inline void printMap(const std::unordered_map<K, V> &map) {
     i++;
   }
   std::cout << "}" << std::endl;
+}
+
+template <typename Func, typename... Args>
+inline auto timedCall(Func &&func, Args &&...args) {
+  auto start = std::chrono::steady_clock::now();
+  auto result =
+      std::invoke(std::forward<Func>(func), std::forward<Args>(args)...);
+  auto end = std::chrono::steady_clock::now();
+  auto elapsed =
+      std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+  std::cout << "Execution time: " << elapsed.count() << " us" << std::endl;
+  return result;
 }
