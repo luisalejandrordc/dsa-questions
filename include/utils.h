@@ -1,5 +1,6 @@
 #pragma once
 #include <chrono>
+#include <cstdint>
 #include <functional>
 #include <iostream>
 #include <string>
@@ -48,3 +49,12 @@ inline auto timedCall(Func &&func, Args &&...args) {
   std::cout << "Execution time: " << elapsed.count() << " us" << std::endl;
   return result;
 }
+
+template <typename T1, typename T2> struct PairHash {
+  std::size_t operator()(const std::pair<T1, T2> &p) const {
+    auto h1 = std::hash<T1>{}(p.first);
+    auto h2 = std::hash<T2>{}(p.second);
+    // Combine hashes (boost-style combine)
+    return h1 ^ (h2 + 0x9e3779b97f4a7c15ULL + (h1 << 6) + (h1 >> 2));
+  }
+};
