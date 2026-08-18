@@ -8,7 +8,7 @@ int recs(vector<int> &nums, int start) {
   if (start > nums.size())
     return 0;
   int maxMoney = 0;
-  for (int i = start; i < nums.size(); i++)
+  for (int i = start; i < nums.size() && i < start + 2; i++)
     maxMoney = max(maxMoney, nums[i] + recs(nums, i + 2));
   return maxMoney;
 }
