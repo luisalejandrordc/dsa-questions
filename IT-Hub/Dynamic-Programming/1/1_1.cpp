@@ -4,14 +4,11 @@
 using namespace std;
 
 int climbStairs(int n) {
-  if (n == 0)
+  if (n == 0) // Top reached
     return 1;
-  int num = 0;
-  if (n >= 1)
-    num += climbStairs(n - 1);
-  if (n > 1)
-    num += climbStairs(n - 2);
-  return num;
+  if (n < 0) // Top exceeded
+    return 0;
+  return climbStairs(n - 1) + climbStairs(n - 2);
 }
 
 int main() {
