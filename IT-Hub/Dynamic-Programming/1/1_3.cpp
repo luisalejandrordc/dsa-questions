@@ -1,4 +1,5 @@
 #include "../../../include/utils.h"
+#include <chrono>
 #include <iostream>
 #include <unordered_map>
 
@@ -23,7 +24,11 @@ int climbStairs(int n) {
 
 int main() {
   printTitle("Climbing Stairs");
+  auto start = chrono::steady_clock::now();
   for (int i = 1; i <= 45; i++)
     cout << "For n = " << i << " -> " << climbStairs(i) << endl;
+  auto end = chrono::steady_clock::now();
+  auto elapsed = chrono::duration<double>(end - start).count();
+  cout << "Elapsed time: " << elapsed << " ms" << endl;
   return 0;
 }

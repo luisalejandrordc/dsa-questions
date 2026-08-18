@@ -17,7 +17,7 @@ int climbStairs(int n) {
 
 int main() {
   printTitle("Climbing Stairs");
-  for (int i = 1; i <= 10; i++)
+  for (int i = 1; i <= 45; i++)
     cout << "For n = " << i << " -> " << climbStairs(i) << endl;
   return 0;
 }
