@@ -4,14 +4,15 @@
 using namespace std;
 
 int climbStairs(int n) {
-  if (n == 0)
-    return 1;
-  int num = 0;
-  if (n >= 1)
-    num += climbStairs(n - 1);
-  if (n > 1)
-    num += climbStairs(n - 2);
-  return num;
+  if (n == 1 || n == 2)
+    return n;
+  int a = 1, b = 2;
+  for (int i = 3; i <= n; i++) {
+    int temp = b;
+    b = a + b;
+    a = temp;
+  }
+  return b;
 }
 
 int main() {
