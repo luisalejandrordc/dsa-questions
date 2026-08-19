@@ -14,10 +14,8 @@ int recs(vector<int> &coins, int amount, unordered_map<int, int> &history) {
     remainder = amount - coin;
     if (remainder < 0)
       break;
-    if (!history.count(remainder)) {
-      // cout << "Remainder: " << remainder << "\tCoin: " << coin << endl;
+    if (!history.count(remainder))
       history[remainder] = recs(coins, remainder, history);
-    }
     if (history[remainder] != -1)
       result = min(result, history[remainder] + 1);
   }
