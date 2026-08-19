@@ -20,8 +20,9 @@ int recs(vector<int> &nums, int idx, unordered_map<int, int> &memo) {
 
 int lengthOfLIS(vector<int> &nums) {
   unordered_map<int, int> memo;
-  // idx -> last element of the subsequence
-  return recs(nums, -1, memo); // -1 means no element
+  // memo[idx] = length of the longest increasing subsequence
+  // that can be formed after nums[idx]
+  return recs(nums, -1, memo);
 }
 
 // Correct, but inefficient
