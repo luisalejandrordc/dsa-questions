@@ -24,7 +24,8 @@ int recs(vector<int> &coins, int idx, int amount,
       history[next] = recs(coins, next.first, next.second, history);
     if (history.at(next) != -1)
       result = min(result, history.at(next) + quantity);
-    remaining += coins[idx];
+    if (quantity != 0)
+      remaining += coins[idx];
     quantity--;
   }
   return result == INT_MAX ? -1 : result;
@@ -108,10 +109,13 @@ int coinChange1(vector<int> &coins, int amount) {
 
 int main() {
   printTitle("Coin Change");
-  vector<int> coins = {288, 160, 10, 249, 40, 77, 314, 429};
-  int amount = 9208;
+  // vector<int> coins = {288, 160, 10, 249, 40, 77, 314, 429};
+  // int amount = 9208;
+  // vector<int> coins = {1, 2147483647};
+  // int amount = 2;
+  vector<int> coins{2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24};
+  int amount = 9999;
   cout << "Solution: " << coinChange(coins, amount) << endl;
   timedCall(coinChange, coins, amount);
-  // timedCall(coinChange3, coins, amount);
   return 0;
 }
