@@ -19,8 +19,9 @@ int recs(vector<int> &nums, int idx, vector<int> &memo) {
 
 int lengthOfLIS(vector<int> &nums) {
   vector<int> memo(nums.size() + 1, -1);
-  // memo[idx] = length of the longest increasing subsequence
-  // that can be formed from nums[idx]
+  // memo[idx] = length of the LIS that can be formed from
+  // nums[idx], considering that nums[idx-1] is also part
+  // of the subsequence
   return recs(nums, 0, memo);
 }
 
