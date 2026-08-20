@@ -1,4 +1,5 @@
 #include "../../../include/utils.h"
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -29,7 +30,8 @@ int lengthOfLIS(vector<int> &nums) {
   // tails[idx] = smallest tail of a strictly increasing
   // subsequence of length idx+1
   for (const int x : nums) {
-    int *p = findGreaterEqual(tails, x);
+    // auto p = lower_bound(tails.begin(), tails.end(), x);
+    int *p = findGreaterEqual(tails, x); // first element >= target
     if (p == nullptr)
       tails.push_back(x);
     else
