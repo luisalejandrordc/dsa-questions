@@ -6,16 +6,14 @@ using namespace std;
 
 // top-down algorithm
 bool recs(vector<int> &nums, int idx, vector<bool> &memo) {
-  // base cases
+  // base case
   if (idx == nums.size() - 1)
     return true;
-  if (idx >= nums.size())
-    return false;
   // recurrence
   if (memo[idx] == false)
     return false;
   else
-    for (int x = nums[idx]; x > 0; x--)
+    for (int x = min(nums[idx], int(nums.size()) - idx - 1); x > 0; x--)
       if (recs(nums, idx + x, memo))
         return true;
   return memo[idx] = false;
