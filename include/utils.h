@@ -1,9 +1,11 @@
 #pragma once
 #include <chrono>
+#include <cstddef>
 #include <cstdint>
 #include <functional>
 #include <iostream>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -15,14 +17,28 @@ inline void printTitle(const std::string &title) {
   std::cout << border << std::endl;
 }
 
-template <typename T> inline void printVector(const std::vector<T> &vec) {
+template <typename T> struct is_vector : std::false_type {};
+
+template <typename T, typename Allocator>
+struct is_vector<std::vector<T, Allocator>> : std::true_type {};
+
+template <typename T> inline constexpr bool is_vector_v = is_vector<T>::value;
+
+template <typename T>
+inline void printVector(const std::vector<T> &vec,
+                        const bool is_initial_call = true) {
   std::cout << "[";
-  for (int i = 0; i < vec.size(); i++) {
+  for (size_t i = 0; i < vec.size(); i++) {
     if (i > 0)
       std::cout << ", ";
-    std::cout << vec[i];
+    if constexpr (is_vector_v<T>)
+      printVector(vec[i], false);
+    else
+      std::cout << vec[i];
   }
-  std::cout << "]" << std::endl;
+  std::cout << "]";
+  if (is_initial_call)
+    std::cout << std::endl;
 }
 
 template <typename K, typename V>

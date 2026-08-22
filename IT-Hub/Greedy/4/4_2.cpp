@@ -42,8 +42,7 @@ int eraseOverlapIntervals1(vector<vector<int>> &intervals) {
       finalIntervals.push_back(lastInterval);
   }
 
-  for (const auto &v : finalIntervals)
-    printVector(v);
+  printVector(finalIntervals);
 
   return erased;
 }
